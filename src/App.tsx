@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
 import cs from './App.module.scss';
-import { MUser } from './consts/models/MUser.ts';
+import { IUser } from './consts/interfaces/IUser.ts';
 import UsersApiService from './utils/services/api/UsersApiService.ts';
-import { EGender } from './consts/enums/EGender.ts';
+import UserAvatar from './components/primitive/custom/user-avatar/UserAvatar.tsx';
 
-const FAKE_USERS: MUser[] = [];
+const FAKE_USERS: IUser[] = [];
 
 function App() {
   const [users, setUsers] = useState<any[]>(null);
@@ -15,18 +15,20 @@ function App() {
       results: 100,
     }).then((res) => {
       console.log('ALL RESULTS: ', res);
+      setUsers(res[0]);
     });
   }, []);
 
   return (
     <div className={cs.appContainer}>
       <div>
-        {/*{users &&*/}
-        {/*  users.map((user) => (*/}
-        {/*    <div key={user.name.title}>*/}
-        {/*      <p>{user.name.title}</p>*/}
-        {/*    </div>*/}
-        {/*  ))}*/}
+        {users &&
+          users.map((user) => (
+            <div key={user.id} className={cs['user-card']}>
+              <UserAvatar avatar={user.picture} />
+              <p>{user.name}</p>
+            </div>
+          ))}
       </div>
     </div>
   );

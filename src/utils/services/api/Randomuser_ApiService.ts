@@ -13,7 +13,11 @@ class Randomuser_ApiService {
         console.log('RANDOMUSER: ', data);
         return data;
       })
-      .catch((error) => console.error(error));
+      .catch((error) =>
+        console.error(
+          `Error to fetch users from "roundomusers" source, error: ${error}`
+        )
+      );
   }
 }
 

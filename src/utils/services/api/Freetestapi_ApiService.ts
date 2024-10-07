@@ -1,4 +1,5 @@
 import { EApiUrl } from '../../../consts/paths/EApiUrl.ts';
+import { fromFreetestapiToUserModel } from '../../convertors/UserModelConvertor.ts';
 
 class Freetestapi_ApiService {
   static getUsers() {
@@ -8,9 +9,13 @@ class Freetestapi_ApiService {
       .then((res) => res.json())
       .then((data) => {
         console.log('FREETESTAPI: ', data);
-        return data;
+        return fromFreetestapiToUserModel(data);
       })
-      .catch((error) => console.error(error));
+      .catch((error) =>
+        console.error(
+          `Error to fetch users from "freetestapi" source, error: ${error}`
+        )
+      );
   }
 }
 
