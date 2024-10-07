@@ -10,10 +10,10 @@ class Randomuser_ApiService {
     return fetch(path)
       .then((res) => res.json())
       .then((data) => {
-        console.log('playn data: ', data);
+        console.log('RANDOMUSER: ', data);
         return data;
       })
-      .catch((error) => console.error);
+      .catch((error) => console.error(error));
   }
 }
 
