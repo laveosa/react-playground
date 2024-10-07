@@ -1,7 +1,7 @@
-import { LocalStorageKeyEnum } from "../../consts/enums/LocalStorageKeyEnum.ts";
+import { EStorageKey } from '../../consts/enums/EStorageKey.ts';
 
 class LocalStorageService {
-  static setItem<T>(key: LocalStorageKeyEnum, value: T): void {
+  static setItem<T>(key: EStorageKey, value: T): void {
     try {
       const serializeValue = JSON.stringify(value);
       localStorage.setItem(key, serializeValue);
@@ -10,7 +10,7 @@ class LocalStorageService {
     }
   }
 
-  static getItem<T>(key: LocalStorageKeyEnum): T | null {
+  static getItem<T>(key: EStorageKey): T | null {
     try {
       const serializeValue = localStorage.getItem(key);
       return serializeValue ? (JSON.parse(serializeValue) as T) : null;
@@ -20,7 +20,7 @@ class LocalStorageService {
     }
   }
 
-  static removeItem(key: LocalStorageKeyEnum): void {
+  static removeItem(key: EStorageKey): void {
     try {
       localStorage.removeItem(key);
     } catch (error) {
@@ -28,7 +28,7 @@ class LocalStorageService {
     }
   }
 
-  static containsKey(key: LocalStorageKeyEnum): boolean {
+  static containsKey(key: EStorageKey): boolean {
     return localStorage.getItem(key) !== null;
   }
 
